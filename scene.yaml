@@ -424,149 +424,120 @@ layers:
                                 [14, 1px]
                                 ]
 
-    # primary:
-    #     data: { source: herebase, layer: roads }
-    #     filter: function() { return (feature.kind == 'major_road' && ( feature.kind_detail.startsWith('primary')))}
-    #     draw:
-    #         road_casing:
-    #             style: lines
-    #             color: '#FFFFFF'
-    #             order: global.sort_rank
-    #             width: [
-    #                     [8, 1900],
-    #                     [9, 1200],
-    #                     [10, 640],
-    #                     [11, 340],
-    #                     [12, 180],
-    #                     [13, 90],
-    #                     [14, 70],
-    #                     [16, 22],
-    #                     [18, 16]
-    #                     ]
-    #         road_line:
-    #             style: lines
-    #             color: '#EFEFEF'
-    #             order: function() { return feature.sort_rank + 5; }
-    #             width: [
-    #                     [8, 1300],
-    #                     [9, 800],
-    #                     [10, 440],
-    #                     [11, 240],
-    #                     [12, 130],
-    #                     [13, 70],
-    #                     [14, 54],
-    #                     [16, 18],
-    #                     [18, 14]
-    #                     ]
-    #     # label_low:
-    #     #     filter:
-    #     #         all:
-    #     #         - $zoom: {min: 13}
-    #     #     draw:
-    #     #         text:
-    #     #             repeat_distance: 100px
-    #     #             font:
-    #     #                 text_source: global.language_text_source
-    #     #                 family: FiraGo
-    #     #                 size: 16
-    #     #                 priority: 25
-    #     #                 fill: '#000000'
-    #     #                 stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
-    #     #                 }
-    #     # label_high:
-    #     #     filter:
-    #     #          - $zoom: { min: 13 }
-    #     #     draw:
-    #     #         text:
-    #     #             repeat_distance: 100px
-    #     #             font:
-    #     #                 text_source: global.language_text_source
-    #     #                 family: FiraGo
-    #     #                 size: 16
-    #     #                 priority: 25
-    #     #                 fill: '#000000'
-    #     #                 stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
-    #     #                 }
-    # highway:
-    #     data: { source: herebase, layer: roads }
-    #     filter: function() { return (feature.kind == 'highway' && (feature.kind_detail.startsWith('motorway')))}
-    #     draw:
-    #         road_casing:
-    #             style: lines
-    #             color: '#FFFFFF'
-    #             order: global.sort_rank
-    #             width: [
-    #                     [5, 7000],
-    #                     [6, 4600],
-    #                     [7, 3200],
-    #                     [8, 2400],
-    #                     [9, 1400],
-    #                     [10, 800],
-    #                     [11, 430],
-    #                     [12, 240],
-    #                     [13, 130],
-    #                     [14, 90],
-    #                     [16, 30],
-    #                     [18, 18]
-    #                     ]
-    #         road_line:
-    #             style: lines
-    #             color: '#EFEFEF'
-    #             order: function() { return feature.sort_rank + 5; }
-    #             width: [
-    #                     [5, 7000],
-    #                     [6, 4600],
-    #                     [7, 3200],
-    #                     [8, 1700],
-    #                     [9, 1020],
-    #                     [10, 600],
-    #                     [11, 320],
-    #                     [12, 190],
-    #                     [13, 104],
-    #                     [14, 70],
-    #                     [16, 26],
-    #                     [18, 16]
-    #                     ]
-    #     link:
-    #         filter: { is_link: true }
-    #         draw:
-    #             link_casing:
-    #                 style: lines
-    #                 color: '#FFFFFF'
-    #                 order: global.sort_rank
-    #                 width: [
-    #                         [12, 120],
-    #                         [13, 50],
-    #                         [14, 36],
-    #                         [16, 18],
-    #                         [18, 14]
-    #                         ]
-    #             link_line:
-    #                 style: lines
-    #                 color: '#EFEFEF'
-    #                 order: function() { return feature.sort_rank + 5; }
-    #                 width: [
-    #                         [12, 100],
-    #                         [13, 40],
-    #                         [14, 24],
-    #                         [16, 14],
-    #                         [18, 12]
-    #                         ]
-    #     # label:
-    #     #     filter:
-    #     #         all:
-    #     #         - $zoom: {min: 13}
-    #     #     draw:
-    #     #         text:
-    #     #             repeat_distance: 100px
-    #     #             font:
-    #     #                 text_source: global.language_text_source
-    #     #                 family: FiraGo
-    #     #                 size: 16
-    #     #                 priority: 25
-    #     #                 fill: '#000000'
-    #     #                 stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
-    #     #                 }
+        primary:
+            filter:
+                all:
+                    - kind: major_road
+                    - kind_detail: primary
+            draw:
+                lines:
+                    color: [[8, global.midlight_color], [12, global.mid_color], [13, global.black_color], [14, global.white_color]]
+                    # color: red
+                    width: [
+                            [9, 0.5px],
+                            [13, 1px],
+                            [14, 0.1px],
+                            [15, 1.25px],
+                            [16, 2px],
+                            [17, 8px],
+                            [18, 10m]
+                            ]
+                    outline:
+                        color: [[8, global.white_color], [12, global.white_color], [13, global.black_color]]
+                        width: [
+                                [8, 0px],
+                                [13, 0px],
+                                [14, 0.75px],
+                                [15, 1px]
+                                ]
+            # label_low:
+            #     filter:
+            #         all:
+            #         - $zoom: {min: 13}
+            #     draw:
+            #         text:
+            #             repeat_distance: 100px
+            #             font:
+            #                 text_source: global.language_text_source
+            #                 family: FiraGo
+            #                 size: 16
+            #                 priority: 25
+            #                 fill: '#000000'
+            #                 stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
+            #                 }
+            # label_high:
+            #     filter:
+            #          - $zoom: { min: 13 }
+            #     draw:
+            #         text:
+            #             repeat_distance: 100px
+            #             font:
+            #                 text_source: global.language_text_source
+            #                 family: FiraGo
+            #                 size: 16
+            #                 priority: 25
+            #                 fill: '#000000'
+            #                 stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
+            #                 }
+        highway:
+            filter:
+                all:
+                    - kind: highway
+                    - kind_detail: motorway
+            draw:
+                lines:
+                    color: [[8, global.black_color], [13, global.black_color], [14, global.white_color]]
+                    # color: red
+                    width: [
+                            [8, 1px],
+                            [13, 1px],
+                            [14, 0.1px],
+                            [15, 1.5px],
+                            [17, 8px],
+                            [18, 10m]
+                            ]
+                    outline:
+                        color: [[8, global.white_color], [12, global.white_color], [13, global.black_color]]
+                        width: [
+                                [8, 0px],
+                                [13, 0px],
+                                [14, 1px]
+                                ]
+            link:
+                filter: { is_link: true }
+                draw:
+                    lines:
+                        color: [[9, global.mid_color], [13, global.mid_color], [14, global.white_color]]
+                        width: [
+                                [9, 0px],
+                                [13, 0.75px],
+                                [14, 0.1px],
+                                [17, 4px],
+                                [18, 5m]
+                                ]
+                        outline:
+                            color: [[9, global.white_color], [12, global.white_color], [13, global.mid_color], [15, global.black_color]]
+                            width: [
+                                    [9, 0px],
+                                    [13, 0px],
+                                    [14, 0.4px],
+                                    [17, 1px]
+                                    ]
+            # label:
+            #     filter:
+            #         all:
+            #         - $zoom: {min: 13}
+            #     draw:
+            #         text:
+            #             repeat_distance: 100px
+            #             font:
+            #                 text_source: global.language_text_source
+            #                 family: FiraGo
+            #                 size: 16
+            #                 priority: 25
+            #                 fill: '#000000'
+            #                 stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
+            #                 }
 
     landuse:
         data: { source: herebase }
