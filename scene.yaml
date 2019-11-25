@@ -295,6 +295,7 @@ layers:
             draw:
                 lines:
                     color: [[11, global.ultralight_color], [14, global.mid_color], [16, global.white_color]]
+                    # color: red
                     width: [
                             [11, 0.35px],
                             [13, 0.5px],
@@ -406,9 +407,11 @@ layers:
                     - kind_detail: trunk
             draw:
                 lines:
-                    color: [[8, global.black_color], [13, global.black_color], [14, global.white_color]]
+                    color: [[5, global.black_color], [13, global.black_color], [14, global.white_color]]
                     # color: red
                     width: [
+                            [4, 0px],
+                            [5, 1px],
                             [8, 1px],
                             [13, 1px],
                             [14, 0.1px],
@@ -434,6 +437,8 @@ layers:
                     color: [[8, global.midlight_color], [12, global.mid_color], [13, global.black_color], [14, global.white_color]]
                     # color: red
                     width: [
+                            [7, 0px],
+                            [8, 0.5px],
                             [9, 0.5px],
                             [13, 1px],
                             [14, 0.1px],
@@ -486,9 +491,11 @@ layers:
                     - kind_detail: motorway
             draw:
                 lines:
-                    color: [[8, global.black_color], [13, global.black_color], [14, global.white_color]]
+                    color: [[5, global.black_color], [13, global.black_color], [14, global.white_color]]
                     # color: red
                     width: [
+                            [4, 0px],
+                            [5, 1px],
                             [8, 1px],
                             [13, 1px],
                             [14, 0.1px],
@@ -508,6 +515,7 @@ layers:
                 draw:
                     lines:
                         color: [[9, global.mid_color], [13, global.mid_color], [14, global.white_color]]
+                        # color: red
                         width: [
                                 [9, 0px],
                                 [13, 0.75px],
