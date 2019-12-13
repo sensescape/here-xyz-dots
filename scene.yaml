@@ -635,6 +635,12 @@ layers:
                 color: [1.000,1.000,1.000]
 
         footprints:
+            filter:
+                any:
+                    - { $zoom: [14], height: { min: 30 } }
+                    - { $zoom: [15], height: { min: 20 } }
+                    - { $zoom: [16], height: { min: 10 } }
+                    - { $zoom: { min: 17 }, height: true }
             draw:
                 polygons:
                     visible: true
