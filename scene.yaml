@@ -294,11 +294,10 @@ layers:
                     - kind_detail: [unclassified,residential,service]
             draw:
                 lines:
-                    color: [[11, global.ultralight_color], [14, global.mid_color], [16, global.white_color]]
+                    color: [[12, global.ultralight_color], [14, global.mid_color], [16, global.white_color]]
                     # color: red
                     width: [
-                            [11, 0.35px],
-                            [13, 0.5px],
+                            [12, 0.4px],
                             [14, 1px],
                             [15, 1px],
                             [16, 0.1px],
@@ -334,10 +333,11 @@ layers:
             draw:
                 lines:
                     color: [[10, global.lighter_color], [13, global.midlight_color], [15, global.dark_color], [16, global.white_color]]
-                    # color: red
+                    # color: blue
                     width: [
+                            [9, 0px],
                             [10, 0.5px],
-                            [12, 0.5px],
+                            [12, 0.75px],
                             [14, 1px],
                             [15, 1px],
                             [16, 0.1px],
@@ -374,7 +374,8 @@ layers:
                     color: [[11, global.lighter_color], [15, global.dark_color], [16, global.white_color]]
                     # color: red
                     width: [
-                            [11, 0.5px],
+                            [10, 0px],
+                            [11, 0.35px],
                             [15, 1px],
                             [16, 0.1px],
                             [17, 6px],
@@ -452,7 +453,7 @@ layers:
                         width: [
                                 [8, 0px],
                                 [13, 0px],
-                                [14, 0.75px],
+                                [14, 1px],
                                 [15, 1px]
                                 ]
             # label_low:
@@ -517,8 +518,8 @@ layers:
                         color: [[9, global.mid_color], [13, global.mid_color], [14, global.white_color]]
                         # color: red
                         width: [
-                                [9, 0px],
-                                [13, 0.75px],
+                                [11, 0px],
+                                [13, 0.5px],
                                 [14, 0.1px],
                                 [17, 4px],
                                 [18, 5m]
@@ -573,21 +574,30 @@ layers:
                     visible: true
 
         forest-landcover:
-            filter: { kind: forest, $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
+            filter: { kind: forest, $zoom: { min: 10 } }
             draw:
                 polygons:
                     style: forest-dots-multi
-                    color: [1.000,1.000,1.000]
                     visible: true
 
         parks-and-national-forests-not-national-park:
             filter:
                 all:
-                    - kind: park
+                    - kind:
+                        - nature
+                        - park
+                        - wood
+                        - natural_wood
+                        - grass
+                        - meadow
+                        - village_green
+                        - dog_park
+                        - garden
+                        - nature_reserve
+                        - protected_area
             draw:
                 polygons:
                     style: park-dots
-                    color: [1.000,1.000,1.000]
                     visible: true
 
         cemetery:
@@ -596,7 +606,6 @@ layers:
             draw:
                 polygons:
                     style: cemetery-dots
-                    color: global.lighter_color
                     visible: true
 
         golf_course:
@@ -605,7 +614,6 @@ layers:
             draw:
                 polygons:
                     style: golf-dots-multi
-                    color: global.lightest_color
                     visible: true
 
         hospital:
@@ -614,7 +622,6 @@ layers:
             draw:
                 polygons:
                     style: hospital-dots-multi
-                    color: global.lightest_color
                     visible: true
 
     buildings:
@@ -648,10 +655,11 @@ layers:
                 country-outerline:
                     style: lines
                     order: function() { return (feature.sort_rank -1); }
-                    color: global.white_color
+                    # color: global.white_color
+                    color: [[4, [0.955,0.955,0.955]],[8, [0.965,0.965,0.965]]]
                     width: [[0, 0px], [4, 2px], [8, 6px], [14, 8px], [17, 16m]]
                 lines:
-                    color: global.light_color
+                    color: [0.860,0.860,0.860]
                     style: lines-dots
                     width: [[0, 0px], [5, 0px], [6, 1px], [14, 15px]]
             water:
@@ -665,20 +673,13 @@ layers:
         other_country_boundary_disputed_etc:
             filter: { kind: disputed }
             draw:
-                lines:
-                    dash: [1.25, 1.25]
+                disputed-lines:
+                    style: lines
+                    dash: [3.0, 2.0]
                     order: global.feature_order
-                    color: global.lightest_color
-                    width: [[1,0.2px],[9,1.5px],[17,10m]]
-            disputed:
-                filter: { kind: [disputed, line_of_control] }
-                draw:
-                    lines:
-                        dash: [2.0, 1.0]
-                        order: global.feature_order
-                        # style: lines-dots
-                        color: global.lightest_color
-                        width: [[1, 1px], [9, 4px], [17,14m]]
+                    color: [0.880,0.880,0.880]
+                    # color: red
+                    width: [[1, 1px], [9, 4px], [17,14m]]
 
         region:
             filter:
@@ -686,7 +687,8 @@ layers:
                     - kind: region
             draw:
                 lines:
-                    color: global.white_color
+                    color: [0.965,0.965,0.965]
+                    # color: red
                     width: [[0, 0.5px], [14, 3px], [16, 7px], [17, 17m]]
 
             dash-borders:
@@ -694,7 +696,7 @@ layers:
                     $zoom: { min: 7 }
                 draw:
                     lines:
-                        dash: [7.0, 3.0]
+                        dash: [4.0, 2.0]
 
             early:
                 filter: { not: { min_zoom: [1,2] }, $zoom: { max: 8 } }
@@ -1185,7 +1187,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 24.0
-                DOTS_COLOR: vec3(0.855,0.855,0.855)
+                DOTS_COLOR: vec3(0.880,0.880,0.880)
 
     farm-dots:
         base: polygons
@@ -1206,10 +1208,10 @@ styles:
             defines:
                 DOTS_SIZE: 0.1
                 DOTS_TYPE: fill
-                DOTS_BACKGROUND_COLOR: vec3(0.865,0.865,0.865)
+                DOTS_BACKGROUND_COLOR: vec3(0.885,0.885,0.885)
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 24.0
-                DOTS_COLOR: vec3(0.915,0.915,0.915)
+                DOTS_COLOR: vec3(0.950,0.950,0.950)
 
     forest-dots-multi:
         base: polygons
@@ -1223,7 +1225,7 @@ styles:
                 DOTS_SIZE: 0.25
                 DOTS_COLOR: vec3(0.905)
                 DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.860,0.860,0.860)
+                DOTS_COLOR2: vec3(0.870,0.870,0.870)
 
     conservation-dots-multi:
         base: polygons
@@ -1257,14 +1259,14 @@ styles:
         mix: [polygons-dots-multi]
         shaders:
             defines:
-                DOTS_BACKGROUND_COLOR: vec3(0.910)
+                DOTS_BACKGROUND_COLOR: vec3(0.920)
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 24.0
                 DOTS_SIZE: 0.09
                 DOTS_COLOR: vec3(0.920)
                 DOTS_SIZE2: 0.4
-                DOTS_COLOR2: vec3(0.875,0.875,0.875)
+                DOTS_COLOR2: vec3(0.870,0.870,0.870)
 
     hospital-dots-multi:
         base: polygons
